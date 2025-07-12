@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DevBlue | Login & Register</title>
+    <meta name="description" content="DevBlue - Your go-to platform for developer tools and resources. Login or register to access a world of productivity." />
+    <meta name="keywords" content="DevBlue, developer tools, productivity, login, register, web development, software development" />
+    <meta name="author" content="Carlos Reyes" />
+    <link rel="icon" href="assets/icons/website-icon.png" type="image/x-icon" />
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    />
+
+    <!-- Icons (Optional) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #2196F3;
+            --secondary-color: #42A5F5;
+            --hover-color: #64B5F6;
+            --active-color: #1976D2;
+            --text-main-color: #ffffff;
+            --text-secondary-color: #222222;
+        }
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        .btn-outline-primary {
+            background-color: var(--hover-color);
+            border-color: var(--hover-color);
+            color: var(--text-main-color);
+        }
+        .btn-outline-primary:hover {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        a:hover {
+            color: var(--text-main-color);
+        }
+        .modal-content {
+            border-radius: 1rem;
+        }
+        .form-label {
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container py-5 text-center d-flex flex-column align-items-center justify-content-center min-vh-100">
+        <img src="assets/icons/website-icon.png" alt="Welcome Illustration" class="img-fluid" style="max-height: 140px;">
+        <h1 class="mb-3">🚀 DevBlue Hub</h1>
+        <p class="lead text-muted mb-4">
+            Your all-in-one toolbox for fast, practical, and open-source developer tools.
+        </p>
+
+        <!-- Feature Quick Tags -->
+        <div class="row justify-content-center mb-4">
+            <div class="col-md-4 mb-2">📦<strong>All-in-One</strong><br>
+                Color Palette, CSS Box-Shadow Builder, Unit Converter, Regex Tester
+            </div>
+            <div class="col-md-4 mb-2">🛰️ <strong>Offline Ready</strong> — PWA Support</div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="mb-3">
+            <button class="btn btn-outline-primary btn-lg me-2" data-bs-toggle="modal" data-bs-target="#authModal">
+            🔐 
+            <a href="#" class="text-decoration-none" onclick="event.preventDefault(); document.getElementById('login-tab').click();">Login</a> / 
+            <a href="#" class="text-decoration-none" onclick="event.preventDefault(); document.getElementById('register-tab').click();">Register</a>
+            </button>
+            <a href="#" id="exploreToolsBtn" class="btn btn-primary btn-lg">🛠️ Explore Tools</a>
+        </div>
+
+        <!-- GitHub -->
+        <a href="https://github.com/your-repo" target="_blank" class="btn btn-dark btn-sm mt-2">
+            ⭐ View on GitHub
+        </a>
+    </div>
+
+    <!-- Login/Register Modal -->
+    <div class="modal fade" id="authModal" tabindex="-1" aria-labelledby="authModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content shadow-lg rounded-4">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title fw-bold" id="authModalLabel">👤 Welcome to DevBlue Hub</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs mb-4" id="authTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login" type="button" role="tab">🔐 Login</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="register-tab" data-bs-toggle="tab" data-bs-target="#register" type="button" role="tab">📝 Register</button>
+                        </li>
+                    </ul>
+
+                    <!-- Tab content -->
+                    <div class="tab-content" id="authTabsContent">
+                        <!-- Login -->
+                        <div class="tab-pane fade show active" id="login" role="tabpanel">
+                            <form id="loginForm" novalidate>
+                                <div class="mb-3">
+                                    <label for="loginEmail" class="form-label">📧 Email address</label>
+                                    <input type="email" class="form-control" id="loginEmail" required />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="loginPassword" class="form-label">🔑 Password</label>
+                                    <input type="password" class="form-control" id="loginPassword" required />
+                                </div>
+                                <div class="row mb-3 align-items-center">
+                                    <div class="col-6 d-flex align-items-center">
+                                        <input class="form-check-input me-2" type="checkbox" id="rememberMe" />
+                                        <label class="form-check-label mb-0" for="rememberMe">Remember me</label>
+                                    </div>
+                                    <div class="col-6 text-end">
+                                        <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal">Forgot password?</a>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100">🚀 Login</button>
+                            </form>
+                        </div>
+
+                        <!-- Register -->
+                        <div class="tab-pane fade" id="register" role="tabpanel">
+                            <form id="registerForm" novalidate>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="firstName" class="form-label">👤 First Name</label>
+                                        <input type="text" class="form-control" id="firstName" required />
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="lastName" class="form-label">👤 Last Name</label>
+                                        <input type="text" class="form-control" id="lastName" required />
+                                    </div>
+                                </div>
+                                <div class="mb-2">
+                                    <label for="registerEmail" class="form-label">📧 Email</label>
+                                    <input type="email" class="form-control" id="registerEmail" required />
+                                </div>
+                                <div class="mb-2">
+                                    <label for="registerPassword" class="form-label">🔒 Password</label>
+                                    <input type="password" class="form-control" id="registerPassword" required />
+                                </div>
+                                <div class="mb-2">
+                                    <label for="confirmPassword" class="form-label">🔒 Confirm Password</label>
+                                    <input type="password" class="form-control" id="confirmPassword" required />
+                                </div>
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="termsCheck" required />
+                                    <label class="form-check-label" for="termsCheck">
+                                        I agree to the
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#termsModal" style="text-decoration: none;">Terms & Conditions</a> and
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#privacyModal" style="text-decoration: none;">Privacy Policy</a>
+                                    </label>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100">📝 Register</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🔒 Forgot Password Modal -->
+    <div class="modal fade" id="forgotPasswordModal" tabindex="-1" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="forgotPasswordModalLabel">🔒 Forgot Password</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="forgotPasswordForm" novalidate>
+                    <div class="mb-3">
+                        <label for="forgotEmail" class="form-label">📧 Enter your email</label>
+                        <input type="email" class="form-control" id="forgotEmail" required />
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">📩 Send Reset Link</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 📜 Terms & Conditions Modal -->
+    <div class="modal fade" id="termsModal" tabindex="-1" aria-labelledby="termsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content rounded-4">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="termsModalLabel">📜 Terms & Conditions</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="max-height: 60vh; overflow-y: auto;">
+                    <p><strong>1. Acceptance of Terms:</strong> By using this app, you agree to be bound by our terms.</p>
+                    <p><strong>2. Usage:</strong> You shall not misuse, reverse engineer, or exploit the tools provided.</p>
+                    <p><strong>3. Ownership:</strong> All intellectual property belongs to DevBlue Hub.</p>
+                    <p><strong>4. Liability:</strong> We are not liable for any damage caused by misuse or errors in tool output.</p>
+                    <p><strong>5. Updates:</strong> Terms may change. Continued use means acceptance.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🔐 Privacy Policy Modal -->
+    <div class="modal fade" id="privacyModal" tabindex="-1" aria-labelledby="privacyModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content rounded-4">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="privacyModalLabel">🔐 Privacy Policy</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="max-height: 60vh; overflow-y: auto;">
+                    <p><strong>1. Data Collection:</strong> We don’t collect personal data unless you opt-in to services.</p>
+                    <p><strong>2. Cookies:</strong> This app may use cookies for session handling and performance.</p>
+                    <p><strong>3. Third Parties:</strong> We do not sell your data to third parties.</p>
+                    <p><strong>4. Consent:</strong> By using this app, you agree to the terms in this policy.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="accountPromptModal" tabindex="-1" aria-labelledby="accountPromptLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="accountPromptLabel">Account Check</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <p class="mb-4">Do you already have an account?</p>
+                    <button id="promptYes" class="btn btn-primary me-2">Yes, Login</button>
+                    <button id="promptNo" class="btn btn-outline-primary">No, Register</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1055">
+        <div id="authToast" class="toast align-items-center text-bg-success border-0" role="alert">
+            <div class="d-flex">
+                <div class="toast-body">✅ Success!</div>
+                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Simple Validation and Toast Trigger -->
+    <script>
+        const loginForm = document.getElementById("loginForm");
+        const registerForm = document.getElementById("registerForm");
+        const toast = new bootstrap.Toast(document.getElementById("authToast"));
+
+        loginForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            if (loginForm.checkValidity()) {
+                toast.show();
+                loginForm.reset();
+            } else {
+                loginForm.classList.add("was-validated");
+            }
+        });
+
+        registerForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const pass = document.getElementById("registerPassword").value;
+            const confirm = document.getElementById("confirmPassword").value;
+
+            if (registerForm.checkValidity() && pass === confirm) {
+                toast.show();
+                registerForm.reset();
+            } else {
+                registerForm.classList.add("was-validated");
+                if (pass !== confirm) {
+                alert("Passwords do not match!");
+                }
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // Show modal on page load
+            var modal = new bootstrap.Modal(document.getElementById('authModal'));
+            modal.show();
+
+            // Check URL for tab parameter
+            const params = new URLSearchParams(window.location.search);
+            const tab = params.get('tab');
+            if (tab === 'register') {
+                document.getElementById('register-tab').click();
+            } else {
+                document.getElementById('login-tab').click();
+            }
+        });
+
+        document.getElementById('exploreToolsBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            var promptModal = new bootstrap.Modal(document.getElementById('accountPromptModal'));
+            promptModal.show();
+        });
+
+        document.getElementById('promptYes').addEventListener('click', function() {
+            var promptModal = bootstrap.Modal.getInstance(document.getElementById('accountPromptModal'));
+            promptModal.hide();
+            var authModal = new bootstrap.Modal(document.getElementById('authModal'));
+            authModal.show();
+            document.getElementById('login-tab').click();
+        });
+
+        document.getElementById('promptNo').addEventListener('click', function() {
+            var promptModal = bootstrap.Modal.getInstance(document.getElementById('accountPromptModal'));
+            promptModal.hide();
+            var authModal = new bootstrap.Modal(document.getElementById('authModal'));
+            authModal.show();
+            document.getElementById('register-tab').click();
+        });
+    </script>
+
+</body>
+</html>
